@@ -13,7 +13,7 @@ with lib; {
     };
   };
 
-  config = mkIf config.lowrisc.applyUdevRules {
+  config = mkIf config.machshev.applyUdevRules {
     services.udev.packages = [
       pkgs.machshev.dev-udev-rules
     ];
