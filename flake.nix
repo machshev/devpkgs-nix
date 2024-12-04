@@ -3,8 +3,13 @@
   description = "Dev environment Nix Packages";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     flake-utils.url = "github:numtide/flake-utils";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -14,7 +19,7 @@
     ...
   } @ inputs: let
     no_system_outputs = {
-        nixosModules.machshev = import ./modules {inherit self inputs;};
+      nixosModules.machshev = import ./modules {inherit self inputs;};
     };
 
     all_system_outputs = flake-utils.lib.eachDefaultSystem (system: let
@@ -29,7 +34,7 @@
           name = "Hardware Hacking";
           packages = with pkgs; [
             sigrok-cli
-            pulse-view
+            pulseview
           ];
         };
       };
