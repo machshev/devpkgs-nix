@@ -18,8 +18,27 @@
     flake-utils,
     ...
   } @ inputs: let
-    no_system_outputs = {
+    no_system_outputs = rec {
       nixosModules.machshev = import ./modules {inherit self inputs;};
+
+      nixosConfigurations = {
+        machshev = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs;};
+          modules = [
+            ./hosts/machshev/configuration.nix
+            inputs.home-manager.nixosModules.default
+            nixosModules.machshev
+          ];
+        };
+        machshev-laptop = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs;};
+          modules = [
+            ./hosts/machshev-laptop/configuration.nix
+            inputs.home-manager.nixosModules.default
+            nixosModules.machshev
+          ];
+        };
+      };
     };
 
     all_system_outputs = flake-utils.lib.eachDefaultSystem (system: let

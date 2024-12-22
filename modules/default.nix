@@ -16,6 +16,7 @@
     ./display.nix
     ./security.nix
     ./btrfs.nix
+    ./home
   ];
   config = {
     nixpkgs.overlays = [
