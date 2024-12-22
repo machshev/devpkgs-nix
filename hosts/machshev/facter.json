@@ -1191,13 +1191,13 @@
           "irq": 131,
           "prog_if": 0
         },
-        "driver": "nvidia",
-        "driver_module": "nvidia",
+        "driver": "nouveau",
+        "driver_module": "nouveau",
         "drivers": [
-          "nvidia"
+          "nouveau"
         ],
         "driver_modules": [
-          "nvidia"
+          "nouveau"
         ],
         "module_alias": "pci:v000010DEd0000128Bsv00001458sd0000375Abc03sc00i00"
       },

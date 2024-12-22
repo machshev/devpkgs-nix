@@ -2,7 +2,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../config/zfs.nix
+    ./fs.nix
     ../../config/wol.nix
   ];
 
@@ -12,11 +12,7 @@
   machshev = {
     user = {
       enable = true;
-      username = "jamesm";
-      fullName = "David James McCorrie";
     };
-    graphics.intel = true;
-    graphics.nvidia = true;
     applyUdevRules = true;
     autoupdate.enable = true;
     closedFirmwareUpdates = true;

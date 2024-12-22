@@ -10,6 +10,37 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
+
+    # For command-not-found, need this since we get rid of all channels
+    flake-programs-sqlite = {
+      url = "github:wamserma/flake-programs-sqlite";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "flake-utils";
+    };
+
   };
 
   outputs = {
@@ -26,6 +57,8 @@
           specialArgs = {inherit inputs;};
           modules = [
             ./hosts/machshev/configuration.nix
+            { config.facter.reportPath = ./hosts/machshev/facter.json; }
+            inputs.nixos-facter-modules.nixosModules.facter
             inputs.home-manager.nixosModules.default
             nixosModules.machshev
           ];

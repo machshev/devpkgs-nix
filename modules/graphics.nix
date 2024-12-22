@@ -30,6 +30,7 @@ with lib; {
     (mkIf config.machshev.graphics.enable {
       hardware.graphics.enable = true;
       hardware.graphics.enable32Bit = true;
+      boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
     })
 
     (mkIf config.machshev.graphics.intel {
