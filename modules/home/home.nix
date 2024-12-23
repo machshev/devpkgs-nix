@@ -44,12 +44,6 @@
     taskwarrior3
   ];
 
-  programs.nix-index = {
-    enable = true;
-    enableBashIntegration = true;
-    enableFishIntegration = true;
-  };
-
   programs.git = {
     enable = true;
     userEmail = "djmccorrie@gmail.com";

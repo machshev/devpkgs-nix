@@ -1,4 +1,13 @@
-{config, ...}: {
+{
+  config,
+  inputs,
+  lib,
+  ...
+}: {
+  imports = [
+    inputs.flake-programs-sqlite.nixosModules.programs-sqlite
+  ];
+
   options = {
   };
 
@@ -14,6 +23,8 @@
 
     nix.settings.flake-registry = "";
     nix.channel.enable = false;
+
+    programs.git.enable = lib.mkDefault true;
 
     # with channels disabled we need a replacement for command-not-found as fish
     # uses it.

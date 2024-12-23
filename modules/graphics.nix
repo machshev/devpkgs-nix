@@ -26,7 +26,6 @@ with lib; {
   };
 
   config = lib.mkMerge [
-
     (mkIf config.machshev.graphics.enable {
       hardware.graphics.enable = true;
       hardware.graphics.enable32Bit = true;
@@ -40,7 +39,6 @@ with lib; {
       boot.kernelParams = [
         "i915.enable_psr=0"
       ];
-
     })
 
     (mkIf config.machshev.graphics.nvidia {

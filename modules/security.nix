@@ -1,9 +1,14 @@
 {
+  inputs,
   lib,
   pkgs,
   ...
 }:
 with lib; {
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+  ];
+
   options = {};
 
   config = {
@@ -42,6 +47,5 @@ with lib; {
       # Use age (ED25519) instead of gpg (RSA)
       gnupg.sshKeyPaths = [];
     };
-
   };
 }

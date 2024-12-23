@@ -1,9 +1,4 @@
-{
-  config,
-  inputs,
-  lib,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     inputs.disko.nixosModules.disko
   ];
@@ -60,16 +55,7 @@
           canmount = "off";
           mountpoint = "none";
           "com.sun:auto-snapshot" = "false";
-
-          #encryption = "aes-256-gcm";
-          #keyformat = "passphrase";
-          # Used at installation-time, passed to nixos-anywhere
-          #keylocation = "file:///tmp/disk.key";
         };
-
-        postCreateHook = ''
-          zfs set keylocation="prompt" pool
-        '';
 
         datasets = {
           ROOT = {

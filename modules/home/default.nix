@@ -27,40 +27,48 @@ with lib; {
       default = "djmccorrie@gmail.com";
       description = "User email";
     };
+    machshev.user.github = mkOption {
+      type = types.str;
+      default = "machshev";
+      description = "Github account";
+    };
   };
 
   config = let
-      cfg = config.machshev.user;
-    in mkIf cfg.enable {
-    # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.${cfg.username} = {
-      isNormalUser = true;
-      description = "${cfg.fullName}";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-        "dialout"
-        "plugdev"
-        "wireshark"
-        "tty"
-        "audio"
-        "video"
-        "kvm"
-        "docker"
-        "libvirtd"
-      ];
-      shell = pkgs.fish;
-    };
+    cfg = config.machshev.user;
+  in
+    mkIf cfg.enable {
+      # Define a user account. Don't forget to set a password with ‘passwd’.
+      users.users.${cfg.username} = {
+        isNormalUser = true;
+        createHome = true;
+        description = "${cfg.fullName}";
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "dialout"
+          "plugdev"
+          "wireshark"
+          "tty"
+          "audio"
+          "video"
+          "kvm"
+          "docker"
+          "libvirtd"
+        ];
+        openssh.authorizedKeys.keyFiles = [../../keys/${config.machshev.user.github}.keys];
+        shell = pkgs.fish;
+      };
 
-    programs.fish.enable = true;
+      programs.fish.enable = true;
 
-    home-manager = {
-      extraSpecialArgs = {inherit inputs;};
-      useUserPackages = true;
-      useGlobalPkgs = true;
-      users = {
-        "${cfg.username}" = import ./home.nix;
+      home-manager = {
+        extraSpecialArgs = {inherit inputs;};
+        useUserPackages = true;
+        useGlobalPkgs = true;
+        users = {
+          "${cfg.username}" = import ./home.nix;
+        };
       };
     };
-  };
 }
