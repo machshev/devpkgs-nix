@@ -37,5 +37,11 @@ with lib; {
       enable = true;
       enableSSHSupport = true;
     };
+
+    sops = {
+      # Use age (ED25519) instead of gpg (RSA)
+      gnupg.sshKeyPaths = [];
+    };
+
   };
 }

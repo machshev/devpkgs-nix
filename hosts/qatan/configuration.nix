@@ -4,8 +4,8 @@
   ];
 
   machshev = {
-    hostName = "machshev";
-    machineID = "127faeee905223190bb95dba67694307";
+    hostName = "qatan";
+    machineID = "92fe87dfa38d10d30eda16a267693da2";
     user = {
       enable = true;
     };
