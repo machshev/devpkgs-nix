@@ -10,6 +10,11 @@ with lib; {
       type = types.str;
       description = "Machine host name.";
     };
+    machshev.networkWait = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Systemd wait-online check enable.";
+    };
   };
 
   config = {
@@ -24,6 +29,7 @@ with lib; {
       networkmanagerapplet
     ];
 
+    systemd.network.wait-online.enable = config.machshev.networkWait;
     systemd.network.wait-online.anyInterface = true;
 
     services.resolved.enable = true;
