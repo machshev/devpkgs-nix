@@ -66,20 +66,20 @@
           NIX = {
             type = "zfs_fs";
             mountpoint = "/nix";
-            options.mountpoint = "/nix";
+            options.mountpoint = "legacy";
           };
 
           VAR = {
             type = "zfs_fs";
             mountpoint = "/var";
-            options.mountpoint = "/var";
+            options.mountpoint = "legacy";
           };
 
           USER = {
             type = "zfs_fs";
             mountpoint = "/home";
             options = {
-              mountpoint = "/home";
+              mountpoint = "legacy";
               "com.sun:auto-snapshot" = "true";
             };
           };

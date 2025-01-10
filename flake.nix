@@ -82,14 +82,14 @@
             nixosModules.machshev
           ];
         };
-        machshev-laptop = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs;};
-          modules = [
-            ./hosts/machshev-laptop/configuration.nix
-            inputs.home-manager.nixosModules.default
-            nixosModules.machshev
-          ];
-        };
+        #machshev-laptop = nixpkgs.lib.nixosSystem {
+        #  specialArgs = {inherit inputs;};
+        #  modules = [
+        #    ./hosts/machshev-laptop/configuration.nix
+        #    inputs.home-manager.nixosModules.default
+        #    nixosModules.machshev
+        #  ];
+        #};
         qatan = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs;};
           modules = [
@@ -111,7 +111,9 @@
               path = deploy-rs.lib.${self.nixosConfigurations.${name}.pkgs.system}.activate.nixos self.nixosConfigurations.${name};
             };
           }) {
-            qatan = {};
+            qatan = {
+                sshUser = "david";
+            };
           };
       };
     };
