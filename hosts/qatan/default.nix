@@ -47,6 +47,7 @@
         TZ = "Europe/London";
         VERSION = "LATEST";
         ALLOW_LIST_USERS = "RockCloud678071:2535435978056163,DevoutAsp7316:2535413609540785";
+        OPS = "RockCloud678071:2535435978056163,DevoutAsp7316:2535413609540785";
       };
       image = "itzg/minecraft-bedrock-server";
       ports = ["0.0.0.0:19132:19132/udp"];
