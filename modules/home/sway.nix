@@ -116,6 +116,10 @@
           xkb_layout = "gb";
         };
 
+        "7247:21:SIGMACH1P_USB_Keyboard" = {
+          xkb_layout = "gb";
+        };
+
         "16700:8467:Dell_KB216_Wired_Keyboard" = {
           # removed il temporary solution as multiple layouts don't seem to be working
           # xkb_layout = "us,il";
