@@ -35,11 +35,6 @@
       inputs.flake-utils.follows = "flake-utils";
     };
 
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.utils.follows = "flake-utils";
-    };
   };
 
   outputs = {
@@ -48,74 +43,9 @@
     flake-utils,
     ...
   } @ inputs: let
-    # This could just be inputs.deploy-rs, but doing so will require rebuild instead of using binary cache.
-    # See instruction from the upstream repo: https://github.com/serokell/deploy-rs
-    deploy-rs.lib = flake-utils.lib.eachDefaultSystemMap (
-      system:
-        (import nixpkgs {
-          inherit system;
-          overlays = [
-            inputs.deploy-rs.overlay
-            (final: prev: {
-              deploy-rs = {
-                inherit (nixpkgs.legacyPackages.${prev.system}) deploy-rs;
-                lib = prev.deploy-rs.lib;
-              };
-            })
-          ];
-        })
-        .deploy-rs
-        .lib
-    );
 
-    no_system_outputs = rec {
+    no_system_outputs = {
       nixosModules.machshev = import ./modules {inherit self inputs;};
-
-      nixosConfigurations = {
-        machshev = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs;};
-          modules = [
-            ./hosts/machshev/configuration.nix
-            {config.facter.reportPath = ./hosts/machshev/facter.json;}
-            inputs.nixos-facter-modules.nixosModules.facter
-            inputs.home-manager.nixosModules.default
-            nixosModules.machshev
-          ];
-        };
-        #machshev-laptop = nixpkgs.lib.nixosSystem {
-        #  specialArgs = {inherit inputs;};
-        #  modules = [
-        #    ./hosts/machshev-laptop/configuration.nix
-        #    inputs.home-manager.nixosModules.default
-        #    nixosModules.machshev
-        #  ];
-        #};
-        qatan = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs;};
-          modules = [
-            ./hosts/qatan
-            {config.facter.reportPath = ./hosts/qatan/facter.json;}
-            inputs.nixos-facter-modules.nixosModules.facter
-            inputs.home-manager.nixosModules.default
-            nixosModules.machshev
-          ];
-        };
-      };
-
-      deploy = {
-        nodes =
-          builtins.mapAttrs (name: _: {
-            hostname = name;
-            profiles.system = {
-              user = "root";
-              path = deploy-rs.lib.${self.nixosConfigurations.${name}.pkgs.system}.activate.nixos self.nixosConfigurations.${name};
-            };
-          }) {
-            qatan = {
-                sshUser = "david";
-            };
-          };
-      };
     };
 
     all_system_outputs = flake-utils.lib.eachDefaultSystem (system: let
