@@ -24,6 +24,8 @@ with lib; {
     boot.loader.efi.canTouchEfiVariables = true;
     boot.initrd.systemd.enable = true;
 
+    services.fwupd.enable = true;
+
     # Open drivers
     hardware.enableRedistributableFirmware = true;
 
