@@ -72,8 +72,8 @@
     virt-manager
 
     # terraform
-    terraform
-    terraform-ls
+    opentofu
+    opentofu-ls
     google-cloud-sdk
     yamllint
     yaml-language-server
