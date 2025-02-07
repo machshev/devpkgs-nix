@@ -35,14 +35,6 @@ with lib; {
       wrapperFeatures.gtk = true;
     };
 
-    nixpkgs.overlays = [
-      (self: super: {
-        waybar = super.waybar.overrideAttrs (oldAttrs: {
-          mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true" "-Dmpd=enabled"];
-        });
-      })
-    ];
-
     services.dbus.enable = true;
 
     environment.systemPackages = with pkgs; [

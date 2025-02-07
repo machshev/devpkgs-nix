@@ -24,6 +24,7 @@ with lib; {
     boot.loader.efi.canTouchEfiVariables = true;
     boot.initrd.systemd.enable = true;
 
+    # Firmware update service
     services.fwupd.enable = true;
 
     # Open drivers

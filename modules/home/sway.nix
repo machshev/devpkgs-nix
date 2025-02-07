@@ -31,11 +31,6 @@
     bitwarden-cli
     bitwarden-menu
     goldwarden
-
-    # nwg-shell
-    nwg-displays
-    nwg-bar
-    #nwg-panel
   ];
 
   wayland.windowManager.sway = let
@@ -147,8 +142,8 @@
         {
           command = "${pkgs.waybar}/bin/waybar";
           position = "bottom";
-          height = 25;
-          spacing = 8;
+          #height = 25;
+          #spacing = 8;
         }
       ];
 

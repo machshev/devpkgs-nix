@@ -46,7 +46,6 @@
     pyright
 
     # Nix
-    nil
     nixd
 
     # PHP
@@ -73,7 +72,7 @@
 
     # terraform
     opentofu
-    opentofu-ls
+    terraform-ls # opentofu-ls not yet included
     google-cloud-sdk
     yamllint
     yaml-language-server
