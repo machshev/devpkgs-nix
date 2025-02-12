@@ -12,7 +12,7 @@ with lib; {
     };
     machshev.networkWait = mkOption {
       type = types.bool;
-      default = true;
+      default = false;
       description = "Systemd wait-online check enable.";
     };
   };
