@@ -46,7 +46,7 @@
     pyright
 
     # Nix
-    nixd
+    nil
 
     # PHP
     php
