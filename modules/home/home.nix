@@ -4,11 +4,11 @@
   ...
 }: {
   imports = [
-    ./cad.nix
+    # ./cad.nix
     ./dev.nix
     ./fish.nix
     ./internet.nix
-    ./office.nix
+    #./office.nix
     ./starship
     ./sway.nix
     ./term.nix
