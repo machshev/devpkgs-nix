@@ -29,13 +29,12 @@ with lib; {
     (mkIf config.machshev.graphics.enable {
       hardware.graphics.enable = true;
       hardware.graphics.enable32Bit = true;
-      boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
     })
 
     (mkIf config.machshev.graphics.intel {
       # Required because the intel GPU isn't supported well, does it work with the
       # latest?
-      boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+      boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
       boot.kernelParams = [
         "i915.enable_psr=0"
       ];
