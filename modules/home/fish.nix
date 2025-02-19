@@ -69,7 +69,7 @@
     top = "btm";
     htop = "btm";
 
-    pvea = ". ./.venv/bin/activate";
+    pvea = ". ./.venv/bin/activate.fish";
 
     gta = "go test ./...";
 
