@@ -178,7 +178,7 @@
 
     functions = {
       gcf = ''
-        function gcf {
+        function gcf
           if [[ -z "$1" ]]; then
               echo "Commit hash to fixup is missing"
               return 1
@@ -186,7 +186,33 @@
 
           git commit --fixup="$1"
           git rebase -i --autosquash "$1"~1
-        }
+        end
+      '';
+
+      rsed = ''
+        function rsed
+          for file in (find . -type f -name "$argv[1]" -print)
+            sed -e "$argv[2]" $file | diff -u $file - | nix run nixpkgs#colordiff -- --nobanner
+          end
+        end
+      '';
+
+      rsed-do = ''
+        function rsed-do
+          for file in (find . -type f -name "$argv[1]" -print)
+            sed -i "$argv[2]" $file
+          end
+        end
+      '';
+
+      debug-python = ''
+        function debug-python
+          local cmd="$argv[1]"
+          shift
+          if command -v ipdb >/dev/null; then export PYTHONBREAKPOINT="ipdb.set_trace"; fi
+          if command -v ipdb3 >/dev/null; then export PYTHONBREAKPOINT="ipdb.set_trace"; fi
+          ipython --pdb "$(which "$argv[1]")" -- "$@"
+        end
       '';
 
       fish_greeting = {
