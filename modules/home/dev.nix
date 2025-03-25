@@ -48,10 +48,6 @@
     # Nix
     nil
 
-    # PHP
-    php
-    phpactor
-
     # Node
     nodejs
 
