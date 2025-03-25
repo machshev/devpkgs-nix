@@ -176,6 +176,11 @@
       pvea = ". ./.venv/bin/activate";
     };
 
+    shellInit = ''
+      set -gx FORGIT_DIFF_FZF_OPTS "--preview-window '80%'"
+      set -gx FORGIT_DIFF_PAGER "delta --width=$(math --scale=0 "$(tput cols)*0.8" )"
+    '';
+
     functions = {
       gcf = ''
         function gcf
