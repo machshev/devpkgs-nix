@@ -158,10 +158,6 @@
         src = pkgs.fishPlugins.done.src;
       }
       {
-        name = "tide";
-        src = pkgs.fishPlugins.tide.src;
-      }
-      {
         name = "hydro";
         src = pkgs.fishPlugins.hydro.src;
       }
