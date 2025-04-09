@@ -55,6 +55,7 @@ with lib; {
           "kvm"
           "docker"
           "libvirtd"
+          "cdrom"
         ];
         openssh.authorizedKeys.keyFiles = [../../keys/${config.machshev.user.github}.keys];
         shell = pkgs.fish;
