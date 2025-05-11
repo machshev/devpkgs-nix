@@ -54,13 +54,54 @@
     in {
       packages = flake-utils.lib.filterPackages system machshev_pkgs;
       devShells = {
+
+        re-hacking = pkgs.mkShell {
+          name = "Reverse Engineering";
+          packages = with pkgs; [
+            binwalk
+            teehee
+            ghidra
+            radare2
+            cutter
+          ];
+        };
+
         hardware-hacking = pkgs.mkShell {
           name = "Hardware Hacking";
           packages = with pkgs; [
             sigrok-cli
+            sigrok-firmware-fx2lafw
             pulseview
+            picotool
           ];
         };
+
+        rust = pkgs.mkShell {
+          name = "Rust dev shell";
+          packages = with pkgs; [
+            rustc
+            rust-analyzer
+            cargo
+          ];
+        };
+
+        go = pkgs.mkShell {
+          name = "Go dev shell";
+          packages = with pkgs; [
+            go
+            buf
+          ];
+        };
+
+        python = pkgs.mkShell {
+          name = "Python dev shell";
+          packages = with pkgs; [
+            uv
+            ruff
+            pyright
+          ];
+        };
+
       };
       formatter = pkgs.alejandra;
     });

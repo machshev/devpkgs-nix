@@ -21,15 +21,6 @@
     lua-language-server
     stylua
 
-    # Rust
-    rustc
-    rust-analyzer
-    cargo
-
-    # Go
-    go
-    buf
-
     # Zig
     zig
     zls
@@ -39,11 +30,6 @@
     #clang
     maim
     conky
-
-    # Python
-    uv
-    ruff
-    pyright
 
     # Nix
     nil
@@ -75,17 +61,6 @@
 
     # eda
     usbutils
-    sigrok-cli
-    sigrok-firmware-fx2lafw
-    pulseview
-    picotool
-
-    # Reverse Engineering
-    binwalk
-    teehee
-    ghidra
-    radare2
-    cutter
 
     # Security
     wireshark
