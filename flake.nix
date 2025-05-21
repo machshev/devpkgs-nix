@@ -3,11 +3,11 @@
   description = "Dev environment Nix Packages";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     flake-utils.url = "github:numtide/flake-utils";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -30,7 +30,7 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.1";
+      url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
@@ -54,7 +54,6 @@
     in {
       packages = flake-utils.lib.filterPackages system machshev_pkgs;
       devShells = {
-
         re-hacking = pkgs.mkShell {
           name = "Reverse Engineering";
           packages = with pkgs; [
@@ -101,7 +100,6 @@
             pyright
           ];
         };
-
       };
       formatter = pkgs.alejandra;
     });

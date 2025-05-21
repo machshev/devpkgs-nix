@@ -15,14 +15,16 @@ with lib; {
     programs.direnv.enable = true;
 
     fonts.fontDir.enable = true;
-    fonts.packages = with pkgs; [
-      nerdfonts
-      font-awesome
-      google-fonts
-      meslo-lgs-nf
-      corefonts
-      vistafonts
-    ];
+    fonts.packages = with pkgs;
+      [
+        font-awesome
+        google-fonts
+        meslo-lgs-nf
+        corefonts
+        vistafonts
+      ]
+      ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues
+        pkgs.nerd-fonts);
 
     services.devmon.enable = true;
     services.gvfs.enable = true;
