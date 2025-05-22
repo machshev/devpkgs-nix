@@ -133,6 +133,10 @@
           pos = "0 0";
         };
 
+        "BNQ BenQ GL2760 W4G02001019" = {
+          pos = "0 0";
+        };
+
         "LG Electronics LG HDR 4K 0x00018916" = {
           scale = "1.7";
         };
